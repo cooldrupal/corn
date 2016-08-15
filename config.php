@@ -5,9 +5,9 @@ $connect = NULL;
 
 $connect_settings = array(
   'host' => 'localhost',
-  'username' => 'yii',
-  'password' => '0Y5w7J0h',
-  'database' => 'yii' 
+  'username' => '',
+  'password' => '',
+  'database' => '' 
 );
 
 $templates_dir = "templates";

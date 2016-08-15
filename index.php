@@ -1,8 +1,8 @@
 <?php
 // Setting internal encoding to UTF-8.
 if (!ini_get('mbstring.internal_encoding')) {
-    @ini_set("mbstring.internal_encoding", 'UTF-8');
-    mb_internal_encoding('UTF-8');
+  @ini_set("mbstring.internal_encoding", 'UTF-8');
+  mb_internal_encoding('UTF-8');
 }
 
 require_once('app/db.php');
@@ -13,9 +13,9 @@ function autoload_classes($param) {
   $classes = array('entity','pages','admin','render','form');
 
   foreach ($classes as $class) {
-   if ( preg_match("|".$class."$|", $param, $matches) ) {
-     include_once("app/$class.php");
-     return;
+    if ( preg_match("|".$class."$|", $param, $matches) ) {
+      include_once("app/$class.php");
+      return;
     }
   }
 }
@@ -23,7 +23,6 @@ function autoload_classes($param) {
 spl_autoload_register('autoload_classes');
 
 //Current path
-
 $currpath = "<front>";
 if (isset($_GET['q']) && $currpath = trim($_GET['q'], "/")) {
   //Check alias
@@ -42,39 +41,38 @@ if ( $currpath == "<front>" && $frontpage = Site::get_variable('frontpage') ) {
 $arg = explode('/', $currpath);
 
 if ( count($arg) >= 2 ) {
-   //Determine controller, id, action
-   $action = array_pop($arg);
+  //Determine controller, id, action
+  $action = array_pop($arg);
 
-   if (is_numeric($action)) {
-     $id = $action;
-     $action = 'view';
-   }
-   else {
-     $noid_actions = array('create');
-     $id = in_array($action,$noid_actions) ? NULL : array_pop($arg);
-   }
+  if (is_numeric($action)) {
+    $id = $action;
+    $action = 'view';
+  }
+  else {
+    $noid_actions = array('create');
+    $id = in_array($action,$noid_actions) ? NULL : array_pop($arg);
+  }
 
-   //$controller = '';
-   foreach (array_reverse($arg) as $part) {
-     $controller .= ucfirst($part);
-   }
+  foreach (array_reverse($arg) as $part) {
+    $controller .= ucfirst($part);
+  }
 
-   //print "<br>controller=$controller id=$id action=$action";
+  //print "<br>controller=$controller id=$id action=$action";
 
-   //Run class
-   $instance = new $controller(); 
-   if ($instance) {
-     if ($id) {
-       $instance->$action($id);
-     }
-     else {
-       $instance->$action();
-     }
-   }
-   else { 
-     //Error page
-     print "Error: no exist class $controller";
-   }
+  //Run class
+  $instance = new $controller(); 
+  if ($instance) {
+    if ($id) {
+      $instance->$action($id);
+    }
+    else {
+      $instance->$action();
+    }
+  }
+  else { 
+    //Error page
+    print "Error: no exist class $controller";
+  }
 }
 else {
 
@@ -85,15 +83,12 @@ else {
       break;
     default:
       if ($page = new Render("index")) {
-	print $page->content;
+	      print $page->content;
       }
   };
-
 }  
 
-
 //Cleanup
-
 global $connect;
 if ($connect) {
   mysql_close($connect); 
