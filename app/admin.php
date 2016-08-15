@@ -26,7 +26,7 @@ class Admin {
     return $table;
   }
 
-  private function show_table( $table, $caption=NULL ) {
+  private function show_table($table, $caption=NULL) {
     $out = '<table>';
     if ($caption) $out .= "<caption>$caption</caption>";
     $out .= '<tr>';
@@ -47,7 +47,7 @@ class Admin {
     return $out;
   }
 
-  private function admin_sql_table( $name, $fields, $create_link=NULL ) {
+  private function admin_sql_table($name, $fields, $create_link=NULL) {
     $order = reset($fields);
     $dbquery = new DBQuery('select', "* FROM $name ORDER BY $order");
     $res = $dbquery->execute(FALSE);
@@ -66,21 +66,18 @@ class Admin {
       $class = str_replace("_","/",$name);
       $create_link = "<a href='/$class/create'>create</a>";
     }
-    return $this->show_table($table, "<h3>$name</h3>($create_link)" );
-
+    return $this->show_table($table, "<h3>$name</h3>($create_link)");
   }
   
   function view() {
-
     $body = '';
-    $body .= $this->admin_sql_table( 'variables', array('name','value','description') );
-    $body .= $this->admin_sql_table( 'entity_node', array('id','title','active','weight','created','updated') );
+    $body .= $this->admin_sql_table( 'variables', array('name','value','description'));
+    $body .= $this->admin_sql_table( 'entity_node', array('id','title','active','weight','created','updated'));
 
     $create_link = "<a href='/pages/teaser/create'>create teaser page</a>, <a href='/pages/landing/create'>create landing page</a>";
     $body .= $this->admin_sql_table( 'pages', array('id','title'), $create_link );
 
-    if ($page = new Render("admin", array('title'=>'Admin', 'body' => $body) )) print $page->content;
-
+    if ($page = new Render("admin", array('title'=>'Admin', 'body' => $body))) print $page->content;
   }
 
 }

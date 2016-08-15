@@ -28,7 +28,7 @@ class Form {
             $form_body .= "<input type='text' id='edit-$key' name='$key' value='{$field['value']}' size='10' maxlength='255' />";
             break;
 
-         case 'checkbox' :
+          case 'checkbox' :
             $checked = !empty($field['value']) ? 'checked' : ''; 
             if (!empty($field['value'])) $field['value']=1;
             $form_body .= "<input type='checkbox' id='edit-$key' name='$key' value='{$field['value']}' $checked />";
@@ -56,19 +56,17 @@ class Form {
   }
 
   function execute() {
-     if (count($_POST) && isset($_POST['op'])) {
+    if (count($_POST) && isset($_POST['op'])) {
+      //Checkbox
+      foreach ($this->fields as $key=>$field) {
+        if ($field['type']=='checkbox') {  
+          $_POST[$key] = !isset($_POST[$key]) ? 0 : 1;
+        }
+      }
 
-       //Checkbox
-       foreach ($this->fields as $key=>$field) {
-         if ($field['type']=='checkbox') {  
-           $_POST[$key] = !isset($_POST[$key]) ? 0 : 1;
-         }
-       }
-
-       if ($this->validate()) return $_POST;
-     }
-
-     return FALSE;
+      if ($this->validate()) return $_POST;
+    }
+    return FALSE;
   }
 
   private function validate() {
@@ -91,4 +89,3 @@ class Form {
     return !$errors;
   }
 }
-

@@ -35,5 +35,4 @@ class Site {
     print '</script>';  
   }
 
-
 }

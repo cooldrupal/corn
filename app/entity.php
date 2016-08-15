@@ -30,15 +30,15 @@ class NodeEntity extends Entity {
   }
 
   private function _get_fields() {
-      $fields = array();
-      $fields['title'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
-      $fields['body'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>TRUE);
-      $fields['image'] = array('type'=>'file');
+    $fields = array();
+    $fields['title'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
+    $fields['body'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>TRUE);
+    $fields['image'] = array('type'=>'file');
 
-      $fields['weight'] = array('type'=>'int', 'required'=>TRUE, 'value'=>0);
-      $fields['active'] = array('type'=>'checkbox');
+    $fields['weight'] = array('type'=>'int', 'required'=>TRUE, 'value'=>0);
+    $fields['active'] = array('type'=>'checkbox');
      
-      return $fields;
+    return $fields;
   }
 
   function create($values=NULL) {
@@ -172,7 +172,6 @@ class NodeEntity extends Entity {
   }
 
   function delete($id) {
-  
     $entity = $this->load($id);
     $message = 'Delete "' . $entity['title'] . '"?';
     $form = new Form('Delete', $message);
@@ -189,7 +188,6 @@ class NodeEntity extends Entity {
       $dbquery->execute();
 
       print "Deleted {$this->name}";
-
     }
   }
 

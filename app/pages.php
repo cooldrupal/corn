@@ -30,17 +30,17 @@ class TeaserPages extends Pages {
   }
 
   private function _get_fields() {
-      $fields = array();
-      $fields['title'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
-      $fields['class'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
-      $fields['tables'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
-      $fields['filter'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
-      $fields['sort'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
-      $fields['header'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
-      $fields['footer'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
-      $fields['pager'] = array('type'=>'char', 'size'=>10, 'required'=>FALSE);
+    $fields = array();
+    $fields['title'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
+    $fields['class'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
+    $fields['tables'] = array('type'=>'char', 'size'=>60, 'required'=>TRUE);
+    $fields['filter'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
+    $fields['sort'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
+    $fields['header'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
+    $fields['footer'] = array('type'=>'text', 'cols'=>60, 'rows'=>5, 'required'=>FALSE);
+    $fields['pager'] = array('type'=>'char', 'size'=>10, 'required'=>FALSE);
      
-      return $fields;
+    return $fields;
   }
 
   function create($values=NULL) {
@@ -147,7 +147,6 @@ class TeaserPages extends Pages {
   }
 
   function delete($id) {
-  
     $entity = $this->load($id);
     $message = 'Delete "' . $entity['title'] . '"?';
     $form = new Form('Delete', $message);
